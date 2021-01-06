@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\Gender;
 use App\Models\PayGrade;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,9 +38,10 @@ Route::group(['prefix' => 'products'], function (){
 
 Route::group(['prefix' => 'users'], function (){
     ROute::apiResources([
-        '/{users}/departments' => Department::class,
+        '/{users}/departments' => DepartmentController::class,
         '/{users}/designations' => Designation::class,
-	    '/{users}/grades' => PayGrade::class
+        '/{users}/grades' => PayGrade::class,
+	    '/{users}/genders' => Gender::class
     ]);
 });
 

@@ -3,19 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Department\DepartmentResource;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
-        //
+        return DepartmentResource::collection(
+                Department::latest() -> paginate()
+        );
     }
 
     /**
@@ -36,18 +40,18 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Department  $department
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
     public function show(Department $department)
     {
-        //
+        return DepartmentResource::collection($department);
     }
 
     /**
